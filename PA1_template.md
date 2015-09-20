@@ -3,6 +3,10 @@ title: "PA1_template.Rmd"
 output: html_document
 ---
 
+#Loading and Preprocessing Data
+
+
+
 Here we unzip the "activity.zip" file that's in our working directory after we forked it, and then we convert it into a data frame called StepsData using read.csv.
 Then I converted the Date column of the data frame from factor into Date objects.
 
@@ -13,6 +17,8 @@ StepsData <- read.csv(unzip("activity.zip"))
 StepsData$date <- as.Date(StepsData$date)
 ```
 
+
+#What is mean total number of steps taken per day?
 
 Here we use the aggregate function to create a data frame with the total number of steps taken by day. Then I use the hist function to create a histogram of that data.
 
@@ -41,6 +47,9 @@ median(TotalStepsByDay$steps)
 ## [1] 10765
 ```
 
+
+#What is the Average Daily Activity Pattern?
+
 Use aggregate() to create variable AverageStepsByInterval which is a data frame with the average number of steps taken daily by time interval.
 THen I use the plot function with type "l" to create a time series with that data.
 
@@ -51,6 +60,8 @@ plot(AverageStepsByInterval$interval, AverageStepsByInterval$steps, type = "l", 
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
 
+
+#Imputing Missing Values
 
 Here I calculate that the time interval 835 has the highest amount if average steps taken.
 
@@ -117,7 +128,7 @@ median(NewTotalStepsByDay$steps)
 ## [1] 10766.19
 ```
 
-
+#Comparing Weekdays and Weekends
 
 Here we convert the dates into days of the week and then categorize the days of the week into either "weekday" or "weekend". THen we compare the average steps by interval with respect to weekdays, and also separately with respect to weekends using a time series panel plot.
 
